@@ -1,0 +1,22 @@
+{
+  "name": "tool-clone-asset",
+  "version": "0.0.1",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "i18n:MAIN_MENU.package.title/tool-clone-asset/open": {
+      "message": "tool-clone-asset:open"
+    },
+    "i18n:MAIN_MENU.package.title/tool-clone-asset/hello": {
+      "message": "tool-clone-asset:say-hello"
+    }
+  },
+  "panel": {
+    "main": "panel/index.js",
+    "type": "dockable",
+    "title": "tool-clone-asset",
+    "width": 400,
+    "height": 300
+  }
+}
