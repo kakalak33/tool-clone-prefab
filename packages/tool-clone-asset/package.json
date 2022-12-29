@@ -5,11 +5,8 @@
   "author": "Cocos Creator",
   "main": "main.js",
   "main-menu": {
-    "i18n:MAIN_MENU.package.title/tool-clone-asset/open": {
+    "tools/tool-clone-asset": {
       "message": "tool-clone-asset:open"
-    },
-    "i18n:MAIN_MENU.package.title/tool-clone-asset/hello": {
-      "message": "tool-clone-asset:say-hello"
     }
   },
   "panel": {
