@@ -4,6 +4,7 @@ const path = require('path');
 
 let currentRootPath = 'demo-prefab';
 let destRootPath = 'demo-clone';
+let assetdbRootPath = 'db://assets';
 
 function walkSync(currentDirPath, callback) {
     fs.readdirSync(currentDirPath).forEach(function (name) {
@@ -154,8 +155,7 @@ function cloneAssets() {
         fs.writeFileSync(sceneInfo.destPath, sceneString);
     });
 
-    const url = Editor.assetdb.uuidToUrl('69fd8e0b-5436-4830-b746-f400dc3858fd');
-    Editor.assetdb.refresh(url, () => {
+    Editor.assetdb.refresh(assetdbRootPath, () => {
         Editor.log('Refresh Folder');
     });
 }
