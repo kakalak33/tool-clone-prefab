@@ -56,7 +56,7 @@ function cloneAssets() {
     let sceneAssets = [];
     let otherAssets = [];
     let folderPath = Editor.assetdb.uuidToFspath('6412f35b-29d1-4ebe-b90a-53ff0355c072');
-    walkSync(folderPath, function(filePath, isDirectory) {
+    walkSync(folderPath, function (filePath, isDirectory) {
         if (isDirectory) {
             listFolders.push(filePath);
         } else {
@@ -110,7 +110,7 @@ function cloneAssets() {
                 contentObject.subMetas[fileName].rawTextureUuid = newUUID;
             }
         }
-        
+
         fs.writeFileSync(destPath, fileContent);
         fs.writeFileSync(destMetaFilePath, JSON.stringify(contentObject));
 
@@ -161,26 +161,26 @@ function cloneAssets() {
 }
 
 module.exports = {
-    load () {
+    load() {
         // execute when package loaded
     },
 
-    unload () {
+    unload() {
         // execute when package unloaded
     },
 
     // register your ipc messages here
     messages: {
-        'open' () {
+        'open'() {
             // open entry panel registered in package.json
             Editor.Panel.open('tool-clone-asset');
         },
-        'say-hello' () {
-            Editor.log('Hello World!', );
-            // send ipc message to panel
-            Editor.Ipc.sendToPanel('tool-clone-asset', 'tool-clone-asset:hello');
+        'refresh'() {
+            Editor.assetdb.refresh(assetdbRootPath, () => {
+                Editor.log('Refresh Folder');
+            });
         },
-        'clicked' (evt, uuid) {
+        'clicked'(evt, uuid) {
             cloneAssets();
         }
     },

@@ -13,18 +13,23 @@ Editor.Panel.extend({
     <ui-asset value="" class="asset"></ui-asset>
     <hr />
     <ui-button id="btn">Send To Main</ui-button>
+    <ui-button id="btnRefresh">Refresh Assets Dir</ui-button>
     `,
 
     // element and variable binding
     $: {
         btn: '#btn',
+        btnRefresh: '#btnRefresh',
         asset: '.asset',
     },
 
     // method executed when template and styles are successfully loaded and initialized
-    ready () {
+    ready() {
         this.$btn.addEventListener('confirm', () => {
             Editor.Ipc.sendToMain('tool-clone-asset:clicked', this.$asset.value);
+        });
+        this.$btnRefresh.addEventListener('confirm', () => {
+            Editor.Ipc.sendToMain('tool-clone-asset:refresh');
         });
     },
 
