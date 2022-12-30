@@ -1,5 +1,7 @@
 const fs = require('fs');
 const path = require('path');
+const { emptyDirSync } = require('fs-extra');
+const { execSync } = require('child_process');
 'use strict';
 
 let currentRootPath = 'demo-prefab';
@@ -155,14 +157,19 @@ function cloneAssets() {
         fs.writeFileSync(sceneInfo.destPath, sceneString);
     });
 
-    Editor.assetdb.refresh(assetdbRootPath, () => {
+    refreshDir();
+}
+
+function refreshDir(dir = assetdbRootPath) {
+    Editor.assetdb.refresh(dir, () => {
         Editor.log('Refresh Folder');
-    });
+    }
+    );
 }
 
 module.exports = {
     load() {
-        // execute when package loaded
+
     },
 
     unload() {
@@ -176,9 +183,15 @@ module.exports = {
             Editor.Panel.open('tool-clone-asset');
         },
         'refresh'() {
-            Editor.assetdb.refresh(assetdbRootPath, () => {
-                Editor.log('Refresh Folder');
-            });
+            refreshDir()
+        },
+        'remove'() {
+            const cloneTempPath = path.join(Editor.Project.path, 'assets', destRootPath)
+            if (emptyDirSync) {
+                emptyDirSync(cloneTempPath);
+                Editor.log(execSync('cd ' + cloneTempPath + ';ls', { encoding: 'UTF-8' }));
+            }
+            refreshDir();
         },
         'clicked'(evt, uuid) {
             cloneAssets();

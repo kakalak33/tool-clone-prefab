@@ -14,12 +14,14 @@ Editor.Panel.extend({
     <hr />
     <ui-button id="btn">Send To Main</ui-button>
     <ui-button id="btnRefresh">Refresh Assets Dir</ui-button>
+    <ui-button id="btnRemove">Remove Dir</ui-button>
     `,
 
     // element and variable binding
     $: {
         btn: '#btn',
         btnRefresh: '#btnRefresh',
+        btnRemove: '#btnRemove',
         asset: '.asset',
     },
 
@@ -30,6 +32,9 @@ Editor.Panel.extend({
         });
         this.$btnRefresh.addEventListener('confirm', () => {
             Editor.Ipc.sendToMain('tool-clone-asset:refresh');
+        });
+        this.$btnRemove.addEventListener('confirm', () => {
+            Editor.Ipc.sendToMain('tool-clone-asset:remove');
         });
     },
 
