@@ -189,7 +189,6 @@ module.exports = {
             const cloneTempPath = path.join(Editor.Project.path, 'assets', destRootPath)
             if (emptyDirSync) {
                 emptyDirSync(cloneTempPath);
-                Editor.log(execSync('cd ' + cloneTempPath + ';ls', { encoding: 'UTF-8' }));
             }
             refreshDir();
         },
