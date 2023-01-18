@@ -7,6 +7,9 @@
   "main-menu": {
     "tools/tool-localize": {
       "message": "localize-tool:open"
+    },
+    "tools/reload-localize-tool": {
+      "message": "localize-tool:reload"
     }
   },
   "panel": {

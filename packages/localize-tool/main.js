@@ -5,6 +5,11 @@ function readScene(path) {
 	return JSON.parse(sceneString);
 }
 
+function reloadCurrentScene(promptUser = false) {
+	const electron = require('electron');
+	electron.ipcMain.emit('scene:open-by-uuid', promptUser, Editor.currentSceneUuid)
+}
+
 function removeComponent(sceneUuid, targetUuid) {
 	const scenePath = Editor.assetdb.uuidToFspath(sceneUuid);
 	let sceneArr = readScene(scenePath);
@@ -42,6 +47,10 @@ module.exports = {
 		'log'() {
 			
 		},
+		'reload'() {
+			Editor.Package.reload('localize-tool');
+			Editor.log("=========== Reload localize-tool ===========");
+		},
 		'open'() {
 			// open entry panel registered in package.json
 			Editor.Panel.open('localize-tool');
@@ -55,7 +64,10 @@ module.exports = {
 					removeComponent(uuid, targetUuid);
 				})
 			})
-			Editor.assetdb.refresh(targetFolder, () => Editor.log('=== Refresh folder ==='));
+			Editor.assetdb.refresh(targetFolder, () => {
+				reloadCurrentScene();
+				Editor.log('=== Refresh folder ===');
+			});
 		},
 	},
 };

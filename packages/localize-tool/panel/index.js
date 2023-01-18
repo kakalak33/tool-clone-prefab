@@ -19,12 +19,14 @@ Editor.Panel.extend({
     <hr /> 
     <ui-button id="btnStart">Remove Component</ui-button>
     <ui-button id="btnLog">Log</ui-button>
+    <ui-button id="btnReload">Reload Scene</ui-button>
   `,
 
   // element and variable binding
   $: {
     btnStart: '#btnStart',
     btnLog: '#btnLog',
+    btnReload: '#btnReload',
     folderAsset: '#folderAsset',
     script: '#script'
   },
@@ -36,7 +38,10 @@ Editor.Panel.extend({
       Editor.Ipc.sendToMain('localize-tool:clicked', this.$folderAsset.value, compressedUuid);
     });
     this.$btnLog.addEventListener('confirm', () => {
-
+      Editor.Ipc.sendToMain('localize-tool:log');
+    });
+    this.$btnReload.addEventListener('confirm', () => {
+      Editor.Ipc.sendToPanel('scene', 'scene:new-scene');
     });
   },
 
