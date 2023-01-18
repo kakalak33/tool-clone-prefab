@@ -41,7 +41,7 @@ Editor.Panel.extend({
       Editor.Ipc.sendToMain('localize-tool:log');
     });
     this.$btnReload.addEventListener('confirm', () => {
-      Editor.Ipc.sendToPanel('scene', 'scene:new-scene');
+      Editor.Ipc.sendToMain('localize-tool:reload-scene');
     });
   },
 

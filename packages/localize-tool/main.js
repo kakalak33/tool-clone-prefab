@@ -45,7 +45,7 @@ module.exports = {
 
 	messages: {
 		'log'() {
-			
+
 		},
 		'reload'() {
 			Editor.Package.reload('localize-tool');
@@ -68,6 +68,9 @@ module.exports = {
 				reloadCurrentScene();
 				Editor.log('=== Refresh folder ===');
 			});
+		},
+		'reload-scene'() {
+			reloadCurrentScene(true);
 		},
 	},
 };
