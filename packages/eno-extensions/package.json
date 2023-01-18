@@ -1,0 +1,24 @@
+{
+  "name": "eno-extensions",
+  "version": "0.0.1",
+  "description": "The package template for getting started.",
+  "author": "Cocos Creator",
+  "main": "main.js",
+  "main-menu": {
+    "i18n:MAIN_MENU.package.title/eno-extensions/i18n:eno-extensions.open-clear-asset": {
+      "message": "eno-extensions:open-clear-asset",
+      "icon": "/images/clear.png"
+    },
+    "i18n:MAIN_MENU.package.title/eno-extensions/i18n:eno-extensions.open-clone-game": {
+      "message": "eno-extensions:open-clone-game",
+      "icon": "/images/clone.png"
+    }
+  },
+  "panel": {
+    "main": "panels/clearAsset/index.js",
+    "type": "dockable",
+    "title": "eno-extensions",
+    "width": 400,
+    "height": 300
+  }
+}

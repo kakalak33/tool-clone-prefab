@@ -1,9 +1,7 @@
 const fs = require('fs');
 const path = require('path');
-const { emptyDirSync } = require('fs-extra');
-const { execSync } = require('child_process');
+const { emptyDirSync } = Editor.require('fs-extra');
 'use strict';
-
 let currentRootPath = 'demo-prefab';
 let destRootPath = 'demo-clone';
 let assetdbRootPath = 'db://assets';
@@ -169,11 +167,16 @@ function refreshDir(dir = assetdbRootPath) {
 
 module.exports = {
     load() {
-
+        try {
+            const { execSync } = require('child_process');
+            Editor.log(require('electron'))
+        } catch (err) {
+            Editor.log(err)
+        }
     },
 
     unload() {
-        // execute when package unloaded
+
     },
 
     // register your ipc messages here
@@ -184,6 +187,7 @@ module.exports = {
         },
         'refresh'() {
             refreshDir()
+            Editor.log(Editor.Debugger.startNodeInspector())
         },
         'remove'() {
             const cloneTempPath = path.join(Editor.Project.path, 'assets', destRootPath)
